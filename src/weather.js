@@ -39,6 +39,23 @@ function updateWeather() {
     return localStorage.getItem('lastSearchedLocation');
   }
 
+  function savePreference(pref) {
+    localStorage.setItem("preference", pref);
+  }
+
+  function getPreference() {
+    return localStorage.getItem("preference");
+  }
+
+  const storedPref = getPreference();
+  if (storedPref === "f") {
+    celsius = false;
+    measure.textContent = "Display °C";
+  } else {
+    celsius = true;
+    measure.textContent = "Display °F";
+  }
+
   if (check) {
     // default location on page load
     const lastSearchedLocation = getLastSearchedLocation();
@@ -52,8 +69,14 @@ function updateWeather() {
         } else {
           name.textContent += obj.region;
         }
-        temp.textContent = `${obj.temp_c}°`;
-        feelslike.textContent = `Feels like ${obj.feelslike_c}°`;
+        if (storedPref === "f") {
+          temp.textContent = `${obj.temp_f}°`;
+          feelslike.textContent = `Feels like ${obj.feelslike_f}°`;
+        }
+        else {
+          temp.textContent = `${obj.temp_c}°`;
+          feelslike.textContent = `Feels like ${obj.feelslike_c}°`;
+        }
         condition.textContent = obj.condition;
         data = obj;
       });
@@ -67,8 +90,14 @@ function updateWeather() {
         } else {
           name.textContent += obj.region;
         }
-        temp.textContent = `${obj.temp_c}°`;
-        feelslike.textContent = `Feels like ${obj.feelslike_c}°`;
+        if (storedPref === "f") {
+          temp.textContent = `${obj.temp_f}°`;
+          feelslike.textContent = `Feels like ${obj.feelslike_f}°`;
+        }
+        else {
+          temp.textContent = `${obj.temp_c}°`;
+          feelslike.textContent = `Feels like ${obj.feelslike_c}°`;
+        }
         condition.textContent = obj.condition;
         data = obj;
       });
@@ -105,11 +134,13 @@ function updateWeather() {
   measure.addEventListener("click", () => {
     if (measure.textContent === "Display °F") {
       celsius = false;
+      savePreference('f');
       measure.textContent = "Display °C";
       temp.textContent = `${data.temp_f}°`;
       feelslike.textContent = `Feels like ${data.feelslike_f}°`;
     } else {
       celsius = true;
+      savePreference('c');
       measure.textContent = "Display °F";
       temp.textContent = `${data.temp_c}°`;
       feelslike.textContent = `Feels like ${data.feelslike_c}°`;
