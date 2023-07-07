@@ -28,15 +28,15 @@ function updateWeather() {
   const temp = document.querySelector("#temp");
   const feelslike = document.querySelector("#feelslike");
   const measure = document.querySelector("#measure");
-  
+
   let data;
-  
+
   function saveLocation(location) {
-    localStorage.setItem('lastLocation', location);
+    localStorage.setItem("lastLocation", location);
   }
-  
+
   function getLocation() {
-    return localStorage.getItem('lastLocation');
+    return localStorage.getItem("lastLocation");
   }
 
   function savePreference(pref) {
@@ -72,8 +72,7 @@ function updateWeather() {
         if (storedPref === "f") {
           temp.textContent = `${obj.temp_f}°`;
           feelslike.textContent = `Feels like ${obj.feelslike_f}°`;
-        }
-        else {
+        } else {
           temp.textContent = `${obj.temp_c}°`;
           feelslike.textContent = `Feels like ${obj.feelslike_c}°`;
         }
@@ -93,8 +92,7 @@ function updateWeather() {
         if (storedPref === "f") {
           temp.textContent = `${obj.temp_f}°`;
           feelslike.textContent = `Feels like ${obj.feelslike_f}°`;
-        }
-        else {
+        } else {
           temp.textContent = `${obj.temp_c}°`;
           feelslike.textContent = `Feels like ${obj.feelslike_c}°`;
         }
@@ -106,14 +104,14 @@ function updateWeather() {
 
   function handleSearch() {
     const inputValue = input.value.trim();
-    if (inputValue !== '') {
+    if (inputValue !== "") {
       getWeather(inputValue)
         .then((obj) => {
           saveLocation(inputValue);
-          input.value = '';
-          invalid.textContent = '';
+          input.value = "";
+          invalid.textContent = "";
           name.textContent = `${obj.name}, `;
-          if (obj.region === '') {
+          if (obj.region === "") {
             name.textContent += obj.country;
           } else {
             name.textContent += obj.region;
@@ -128,16 +126,17 @@ function updateWeather() {
           data = obj;
         })
         .catch(() => {
-          input.value = '';
-          invalid.innerHTML = 'Location not found<br>Search must be formatted "City", "City, State", or "City, Country"';
+          input.value = "";
+          invalid.innerHTML =
+            'Location not found<br>Search must be formatted "City", "City, State", or "City, Country"';
         });
     }
   }
 
-  search.addEventListener('click', handleSearch);
+  search.addEventListener("click", handleSearch);
 
-  input.addEventListener('keyup', (event) => {
-    if (event.key === 'Enter') {
+  input.addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
       handleSearch();
     }
   });
@@ -145,13 +144,13 @@ function updateWeather() {
   measure.addEventListener("click", () => {
     if (measure.textContent === "Display °F") {
       celsius = false;
-      savePreference('f');
+      savePreference("f");
       measure.textContent = "Display °C";
       temp.textContent = `${data.temp_f}°`;
       feelslike.textContent = `Feels like ${data.feelslike_f}°`;
     } else {
       celsius = true;
-      savePreference('c');
+      savePreference("c");
       measure.textContent = "Display °F";
       temp.textContent = `${data.temp_c}°`;
       feelslike.textContent = `Feels like ${data.feelslike_c}°`;
