@@ -32,11 +32,11 @@ function updateWeather() {
   let data;
   
   function saveLocation(location) {
-    localStorage.setItem('lastSearchedLocation', location);
+    localStorage.setItem('lastLocation', location);
   }
   
-  function getLastSearchedLocation() {
-    return localStorage.getItem('lastSearchedLocation');
+  function getLocation() {
+    return localStorage.getItem('lastLocation');
   }
 
   function savePreference(pref) {
@@ -58,9 +58,9 @@ function updateWeather() {
 
   if (check) {
     // default location on page load
-    const lastSearchedLocation = getLastSearchedLocation();
-    if (lastSearchedLocation) {
-      getWeather(lastSearchedLocation).then((obj) => {
+    const lastLocation = getLocation();
+    if (lastLocation) {
+      getWeather(lastLocation).then((obj) => {
         check = false;
         invalid.textContent = "";
         name.textContent = `${obj.name}, `;
@@ -104,31 +104,42 @@ function updateWeather() {
     }
   }
 
-  search.addEventListener("click", () => {
-    getWeather(input.value)
-      .then((obj) => {
-        input.value = '';
-        invalid.textContent = "";
-        name.textContent = `${obj.name}, `;
-        if (obj.region === "") {
-          name.textContent += obj.country;
-        } else {
-          name.textContent += obj.region;
-        }
-        if (celsius) {
-          temp.textContent = `${obj.temp_c}°`;
-          feelslike.textContent = `Feels like ${obj.feelslike_c}°`;
-        } else {
-          temp.textContent = `${obj.temp_f}°`;
-          feelslike.textContent = `Feels like ${obj.feelslike_f}°`;
-        }
-        data = obj;
-        saveLocation(input.value);
-      })
-      .catch(() => {
-        input.value = '';
-        invalid.innerHTML = 'Location not found<br>Search must be formatted "City", "City, State", or "City, Country"'
-      });
+  function handleSearch() {
+    const inputValue = input.value.trim();
+    if (inputValue !== '') {
+      getWeather(inputValue)
+        .then((obj) => {
+          saveLocation(inputValue);
+          input.value = '';
+          invalid.textContent = '';
+          name.textContent = `${obj.name}, `;
+          if (obj.region === '') {
+            name.textContent += obj.country;
+          } else {
+            name.textContent += obj.region;
+          }
+          if (celsius) {
+            temp.textContent = `${obj.temp_c}°`;
+            feelslike.textContent = `Feels like ${obj.feelslike_c}°`;
+          } else {
+            temp.textContent = `${obj.temp_f}°`;
+            feelslike.textContent = `Feels like ${obj.feelslike_f}°`;
+          }
+          data = obj;
+        })
+        .catch(() => {
+          input.value = '';
+          invalid.innerHTML = 'Location not found<br>Search must be formatted "City", "City, State", or "City, Country"';
+        });
+    }
+  }
+
+  search.addEventListener('click', handleSearch);
+
+  input.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
   });
 
   measure.addEventListener("click", () => {
