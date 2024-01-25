@@ -64,10 +64,13 @@ function updateWeather() {
         check = false;
         invalid.textContent = "";
         name.textContent = `${obj.name}, `;
-        if (obj.region === "") {
-          name.textContent += obj.country;
-        } else {
+        if (obj.country === "United States of America") {
           name.textContent += obj.region;
+        }
+        else if (obj.country === "") {
+          name.textContent += obj.region;
+        } else {
+          name.textContent += obj.country;
         }
         if (storedPref === "f") {
           temp.textContent = `${obj.temp_f}°`;
@@ -84,10 +87,13 @@ function updateWeather() {
         check = false;
         invalid.textContent = "";
         name.textContent = `${obj.name}, `;
-        if (obj.region === "") {
-          name.textContent += obj.country;
-        } else {
+        if (obj.country === "United States of America") {
           name.textContent += obj.region;
+        }
+        else if (obj.country === "") {
+          name.textContent += obj.region;
+        } else {
+          name.textContent += obj.country;
         }
         if (storedPref === "f") {
           temp.textContent = `${obj.temp_f}°`;
@@ -111,10 +117,13 @@ function updateWeather() {
           input.value = "";
           invalid.textContent = "";
           name.textContent = `${obj.name}, `;
-          if (obj.region === "") {
-            name.textContent += obj.country;
-          } else {
+          if (obj.country === "United States of America") {
             name.textContent += obj.region;
+          }
+          else if (obj.country === "") {
+            name.textContent += obj.region;
+          } else {
+            name.textContent += obj.country;
           }
           if (celsius) {
             temp.textContent = `${obj.temp_c}°`;
@@ -158,4 +167,4 @@ function updateWeather() {
   });
 }
 
-export { updateWeather };
+export default updateWeather;

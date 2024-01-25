@@ -9,4 +9,4 @@ function format() {
   background.src = Background;
 }
 
-export { format };
+export default format;

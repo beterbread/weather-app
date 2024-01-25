@@ -1,5 +1,5 @@
-import { format } from "./format.js";
-import { updateWeather } from "./weather.js";
+import format from "./format";
+import updateWeather from "./weather";
 
 format();
 updateWeather();
