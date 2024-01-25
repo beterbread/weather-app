@@ -86,15 +86,7 @@ function updateWeather() {
       getWeather("College Station").then((obj) => {
         check = false;
         invalid.textContent = "";
-        name.textContent = `${obj.name}, `;
-        if (obj.country === "United States of America") {
-          name.textContent += obj.region;
-        }
-        else if (obj.country === "") {
-          name.textContent += obj.region;
-        } else {
-          name.textContent += obj.country;
-        }
+        name.textContent = `${obj.name}, Texas`;
         if (storedPref === "f") {
           temp.textContent = `${obj.temp_f}°`;
           feelslike.textContent = `Feels like ${obj.feelslike_f}°`;
@@ -132,6 +124,7 @@ function updateWeather() {
             temp.textContent = `${obj.temp_f}°`;
             feelslike.textContent = `Feels like ${obj.feelslike_f}°`;
           }
+          condition.textContent = obj.condition;
           data = obj;
         })
         .catch(() => {
