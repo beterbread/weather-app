@@ -16,7 +16,7 @@
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _assets_magnify_svg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/magnify.svg */ \"./src/assets/magnify.svg\");\n/* harmony import */ var _assets_background_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/background.jpg */ \"./src/assets/background.jpg\");\n\n\n\nfunction format() {\n  const search = document.querySelector(\"#search\");\n  const background = document.querySelector(\".background\");\n\n  search.src = _assets_magnify_svg__WEBPACK_IMPORTED_MODULE_0__;\n  background.src = _assets_background_jpg__WEBPACK_IMPORTED_MODULE_1__;\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (format);\n\n\n//# sourceURL=webpack://weather-app/./src/format.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _assets_magnify_svg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/magnify.svg */ \"./src/assets/magnify.svg\");\n/* harmony import */ var _assets_background_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/background.jpg */ \"./src/assets/background.jpg\");\n/* harmony import */ var _assets_icon_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/icon.png */ \"./src/assets/icon.png\");\n\n\n\n\nfunction format() {\n  const search = document.querySelector(\"#search\");\n  const background = document.querySelector(\".background\");\n  const head = document.querySelector(\"head\");\n  const link = document.createElement(\"link\");\n\n  search.src = _assets_magnify_svg__WEBPACK_IMPORTED_MODULE_0__;\n  background.src = _assets_background_jpg__WEBPACK_IMPORTED_MODULE_1__;\n  link.rel = \"icon\";\n  link.href = _assets_icon_png__WEBPACK_IMPORTED_MODULE_2__;\n  head.append(link);\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (format);\n\n\n//# sourceURL=webpack://weather-app/./src/format.js?");
 
 /***/ }),
 
@@ -47,6 +47,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 eval("module.exports = __webpack_require__.p + \"507ee46596a408406f3b.jpg\";\n\n//# sourceURL=webpack://weather-app/./src/assets/background.jpg?");
+
+/***/ }),
+
+/***/ "./src/assets/icon.png":
+/*!*****************************!*\
+  !*** ./src/assets/icon.png ***!
+  \*****************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"05db463d0a38e9c7b218.png\";\n\n//# sourceURL=webpack://weather-app/./src/assets/icon.png?");
 
 /***/ }),
 
